@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">Story App Submis</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="email">Email</string>
+    <string name="message_login_page">Silakan login untuk melanjutkan</string>
+    <string name="title_login_page">"STORY APP SUBMISSION "</string>
+    <string name="register">Daftar</string>
+    <string name="name">Name</string>
+    <string name="title_signup_page">Daftar Akun Aplikasi Story App</string>
+    <string name="hintTextName">Nama</string>
+    <string name="already_have_account">Sudah punya akun? <u>Klik disini</u></string>
+    <string name="not_have_account">Belum Punya akun? <u>Klik disini</u></string>
+    <string name="card_title">Card Title</string>
+    <string name="card_content">Card Content</string>
 </resources>
