@@ -1,12 +1,13 @@
 package com.chaidar.storyappsubmis.backend.api
 
+import ApiService
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiConfig {
-    private const val baseURL = "https://story-api.dicoding.dev/v1"
+    private const val baseURL = "https://story-api.dicoding.dev/v1/"
 
     fun getRetrofit(): Retrofit {
 

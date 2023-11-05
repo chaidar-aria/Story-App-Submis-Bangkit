@@ -4,19 +4,63 @@ import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.widget.Toast
+import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import com.chaidar.storyappsubmis.R
 import com.chaidar.storyappsubmis.databinding.ActivityRegisterBinding
+import com.chaidar.storyappsubmis.frontend.login.LoginActivity
+import kotlin.math.log
 
 class RegisterActivity : AppCompatActivity() {
+
+    private val registerViewModel by viewModels<RegisterViewModel>()
+
+
     private lateinit var binding: ActivityRegisterBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-//        setupAction()
+        setupAction()
         playAnimation()
+    }
+
+    private fun setupAction() {
+        binding.signupButton.setOnClickListener {
+
+            showLoading()
+
+            val email = binding.emailEditText.text.toString()
+            val password = binding.passwordEditText.text.toString()
+            val name = binding.nameEditText.text.toString()
+
+            registerViewModel.register(email, password, name)
+
+            registerViewModel.registrationResult.observe(this) { result ->
+                result?.let {
+                    if (it) {
+                        hideLoading()
+
+                        // Registration success
+                        showToast("Registration successful")
+                    } else {
+                        hideLoading()
+
+                        // Registration failed
+                        showToast("Registration failed")
+                    }
+                }
+            }
+
+        }
+    }
+
+    private fun showToast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
     private fun playAnimation() {
@@ -55,6 +99,16 @@ class RegisterActivity : AppCompatActivity() {
             )
             startDelay = 100
         }.start()
+    }
+
+    private fun showLoading() {
+        binding.loadingProgressBar.visibility = View.VISIBLE
+
+    }
+
+    private fun hideLoading() {
+        binding.loadingProgressBar.visibility = View.GONE
+
     }
 
 }
