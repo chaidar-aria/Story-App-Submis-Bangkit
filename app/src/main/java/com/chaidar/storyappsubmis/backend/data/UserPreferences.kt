@@ -1,18 +1,23 @@
 package com.chaidar.storyappsubmis.backend.data
 
+import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
+import androidx.datastore.preferences.preferencesDataStore
+import com.chaidar.storyappsubmis.backend.api.ApiConfig
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+
+val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "session")
 
 class UserPreference private constructor(private val dataStore: DataStore<Preferences>) {
     suspend fun saveSession(user: UserModel) {
         dataStore.edit { preferences ->
             preferences[TOKEN_KEY] = user.tokenAuth
-            preferences[IS_LOGIN_KEY] = true
+            preferences[IS_LOGIN_KEY] = user.isLogin
         }
     }
 
@@ -40,6 +45,12 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
         }
     }
 
+    fun getToken(): Flow<String> {
+        return dataStore.data.map { preferences ->
+            preferences[TOKEN_KEY] ?: ""
+        }
+    }
+
 
     companion object {
         @Volatile
@@ -54,6 +65,8 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
                 instance
             }
         }
+        fun setToken(token: String) {
+            ApiConfig.setToken(token)
+        }
     }
-
 }

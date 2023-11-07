@@ -2,6 +2,7 @@ package com.chaidar.storyappsubmis.frontend.register
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -109,6 +110,13 @@ class RegisterActivity : AppCompatActivity() {
     private fun hideLoading() {
         binding.loadingProgressBar.visibility = View.GONE
 
+    }
+
+    fun onLoginLinkClicked(view: View) {
+        // Handle the click event, for example, navigate to the login screen
+        // You can replace LoginActivity::class.java with the actual class of your login screen
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
     }
 
 }
