@@ -21,6 +21,10 @@ class MainViewModel(private val pref: UserPreference) : ViewModel() {
     private val _listStory = MutableLiveData<List<ListStoryItem>>()
     val listStory: LiveData<List<ListStoryItem>> = _listStory
 
+    private val _loadingScreen = MutableLiveData<Boolean>()
+    val loadingScreen: LiveData<Boolean> = _loadingScreen
+
+
     fun getSession(): LiveData<UserModel> {
         return pref.getSession().asLiveData()
     }
@@ -32,6 +36,7 @@ class MainViewModel(private val pref: UserPreference) : ViewModel() {
     }
 
     fun getStories() {
+        _loadingScreen.value = true
         val storiesResult = ApiConfig.getService().getStories()
         storiesResult.enqueue(object : Callback<AllStoryResponse> {
             override fun onResponse(
@@ -39,6 +44,7 @@ class MainViewModel(private val pref: UserPreference) : ViewModel() {
                 response: Response<AllStoryResponse>
             ) {
                 if (response.isSuccessful) {
+                    _loadingScreen.value = false
                     var responseBody = response.body()
                     _listStory.value = responseBody?.listStory ?: emptyList()
                     Log.d("INI-ISI-STORY", responseBody?.message.toString())
@@ -59,6 +65,7 @@ class MainViewModel(private val pref: UserPreference) : ViewModel() {
             }
 
             override fun onFailure(call: Call<AllStoryResponse>, t: Throwable) {
+                _loadingScreen.value = false
                 Log.e("INI-ISI-STORY", "onFailure2: Gagal")
             }
 

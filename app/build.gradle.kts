@@ -39,6 +39,9 @@ android {
 }
 
 dependencies {
+
+    implementation("androidx.exifinterface:exifinterface:1.3.6")
+
     implementation ("androidx.recyclerview:recyclerview:1.2.0")
     implementation ("androidx.cardview:cardview:1.0.0")
 

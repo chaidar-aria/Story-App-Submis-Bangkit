@@ -13,4 +13,10 @@
     <string name="not_have_account">Belum Punya akun? <u>Klik disini</u></string>
     <string name="card_title">Card Title</string>
     <string name="card_content">Card Content</string>
+    <string name="JudulDetail">Judul</string>
+    <string name="DeskripsiDetail">DeskripsiDetail</string>
+    <string name="camera">kamera</string>
+    <string name="gallery">galeri</string>
+    <string name="upload">unggah</string>
+    <string name="empty_image_warning">Silakan masukkan berkas gambar terlebih dahulu.</string>
 </resources>

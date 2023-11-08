@@ -4,7 +4,9 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.activity.viewModels
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.chaidar.storyappsubmis.R
 import com.chaidar.storyappsubmis.backend.api.ApiConfig
@@ -17,6 +19,7 @@ import com.chaidar.storyappsubmis.frontend.login.LoginActivity
 import com.chaidar.storyappsubmis.frontend.profile.ProfileActivity
 import com.chaidar.storyappsubmis.frontend.register.RegisterActivity
 import com.chaidar.storyappsubmis.frontend.settings.SettingsActivity
+import com.chaidar.storyappsubmis.frontend.upload.UploadActivity
 import kotlinx.coroutines.flow.first
 
 class MainActivity : AppCompatActivity() {
@@ -65,6 +68,12 @@ class MainActivity : AppCompatActivity() {
 
         setupView()
         setupAction()
+
+        binding.fabTambahStory.setOnClickListener {
+            val intent = Intent(this, UploadActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 
     private fun setupView() {
@@ -75,6 +84,14 @@ class MainActivity : AppCompatActivity() {
         mainViewModel.listStory.observe(this) {
             recycleViewSetup(it)
         }
+        mainViewModel.loadingScreen.observe(this){
+            loadingProgress(it)
+        }
+    }
+
+    private fun loadingProgress(value: Boolean) {
+        binding.loadingProgressBar.isVisible = value
+        binding.recyclerView.isVisible = !value
     }
 
     private fun recycleViewSetup(list: List<ListStoryItem>) {
@@ -86,4 +103,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
+
+
 }
