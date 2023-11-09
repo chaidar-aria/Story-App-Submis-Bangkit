@@ -60,7 +60,7 @@ class MainActivity : AppCompatActivity() {
             if (user.isLogin) {
                 UserPreference.setToken(user.tokenAuth)
                 Log.d("INI-TOKEN-ISI", "Ini token tadi: ${user.tokenAuth}")
-            } else{
+            } else {
                 startActivity(Intent(this, LoginActivity::class.java))
                 finish()
             }
@@ -68,12 +68,18 @@ class MainActivity : AppCompatActivity() {
 
         setupView()
         setupAction()
+        onResume()
 
         binding.fabTambahStory.setOnClickListener {
             val intent = Intent(this, UploadActivity::class.java)
             startActivity(intent)
         }
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        mainViewModel.getStories()
     }
 
     private fun setupView() {
@@ -84,7 +90,7 @@ class MainActivity : AppCompatActivity() {
         mainViewModel.listStory.observe(this) {
             recycleViewSetup(it)
         }
-        mainViewModel.loadingScreen.observe(this){
+        mainViewModel.loadingScreen.observe(this) {
             loadingProgress(it)
         }
     }
@@ -103,7 +109,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
 
 
 }

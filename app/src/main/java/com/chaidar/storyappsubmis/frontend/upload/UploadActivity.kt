@@ -1,5 +1,6 @@
 package com.chaidar.storyappsubmis.frontend.upload
 
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
@@ -17,6 +18,7 @@ import com.chaidar.storyappsubmis.databinding.ActivityUploadBinding
 import com.chaidar.storyappsubmis.backend.utils.getImageUri
 import com.chaidar.storyappsubmis.backend.utils.reduceFileImage
 import com.chaidar.storyappsubmis.backend.utils.uriToFile
+import com.chaidar.storyappsubmis.frontend.main.MainActivity
 import kotlinx.coroutines.launch
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
@@ -101,6 +103,10 @@ class UploadActivity : AppCompatActivity() {
                                 // Upload success
                                 Log.d("UPLOAD", "Upload Success: ${it.message}")
                                 showToast("Upload Success")
+                                val intent = Intent(this@UploadActivity, MainActivity::class.java)
+                                intent.flags =
+                                    Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                                startActivity(intent)
                                 finish()
                             } else {
                                 // Upload failed with a server error
@@ -126,8 +132,6 @@ class UploadActivity : AppCompatActivity() {
                     showToast("Upload Failed: Request Failure")
                 }
             })
-
-
 
 
         } ?: showToast(getString(R.string.empty_image_warning))
