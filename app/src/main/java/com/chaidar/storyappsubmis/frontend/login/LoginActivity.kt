@@ -12,8 +12,8 @@ import com.chaidar.storyappsubmis.backend.data.UserPreference
 import com.chaidar.storyappsubmis.backend.data.dataStore
 import com.chaidar.storyappsubmis.databinding.ActivityLoginBinding
 import com.chaidar.storyappsubmis.frontend.ViewModelFactory
-import com.chaidar.storyappsubmis.frontend.main.MainActivity
 import com.chaidar.storyappsubmis.frontend.register.RegisterActivity
+import com.chaidar.storyappsubmis.frontend.welcome.SplashScreenActivity
 
 class LoginActivity : AppCompatActivity() {
 
@@ -46,7 +46,7 @@ class LoginActivity : AppCompatActivity() {
 
                         // Registration success
                         showToast("Login successful")
-                        val intent = Intent(this, MainActivity::class.java)
+                        val intent = Intent(this, SplashScreenActivity::class.java)
                         startActivity(intent)
                         finish()
                     } else {

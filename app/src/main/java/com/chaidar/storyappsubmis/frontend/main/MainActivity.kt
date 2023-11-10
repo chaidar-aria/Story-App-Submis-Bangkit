@@ -3,24 +3,19 @@ package com.chaidar.storyappsubmis.frontend.main
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.View
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.chaidar.storyappsubmis.R
-import com.chaidar.storyappsubmis.backend.api.ApiConfig
 import com.chaidar.storyappsubmis.backend.data.UserPreference
 import com.chaidar.storyappsubmis.backend.data.dataStore
 import com.chaidar.storyappsubmis.backend.response.ListStoryItem
 import com.chaidar.storyappsubmis.databinding.ActivityMainBinding
 import com.chaidar.storyappsubmis.frontend.ViewModelFactory
-import com.chaidar.storyappsubmis.frontend.login.LoginActivity
 import com.chaidar.storyappsubmis.frontend.profile.ProfileActivity
-import com.chaidar.storyappsubmis.frontend.register.RegisterActivity
 import com.chaidar.storyappsubmis.frontend.settings.SettingsActivity
 import com.chaidar.storyappsubmis.frontend.upload.UploadActivity
-import kotlinx.coroutines.flow.first
+import com.chaidar.storyappsubmis.frontend.welcome.SplashScreenActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -36,6 +31,13 @@ class MainActivity : AppCompatActivity() {
 
         binding.topAppBar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
+
+                R.id.menu_maps->{
+                    val intent = Intent(this, MapsActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
+
                 R.id.menu_profile -> {
                     val intent = Intent(this, ProfileActivity::class.java)
                     startActivity(intent)
@@ -57,12 +59,11 @@ class MainActivity : AppCompatActivity() {
             }
         }
         mainViewModel.getSession().observe(this) { user ->
-            if (user.isLogin) {
-                UserPreference.setToken(user.tokenAuth)
-                Log.d("INI-TOKEN-ISI", "Ini token tadi: ${user.tokenAuth}")
-            } else {
-                startActivity(Intent(this, LoginActivity::class.java))
+            if (!user.isLogin) {
+//                startActivity(Intent(this, SplashScreenActivity::class.java))
                 finish()
+            } else {
+                UserPreference.setToken(user.tokenAuth)
             }
         }
 

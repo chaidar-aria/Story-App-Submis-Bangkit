@@ -43,6 +43,9 @@ class MainAdapter(private val listItem: List<ListStoryItem>) :
 
 
         val intent = Intent(holder.itemView.context, DetailActivity::class.java)
+        intent.putExtra("title", listItem[position].name)
+        intent.putExtra("content", listItem[position].description)
+        intent.putExtra("photoUrl", listItem[position].photoUrl)
         intent.putExtra("userId", listItem[position].id)
         holder.itemView.setOnClickListener {
             holder.itemView.context.startActivity(intent)

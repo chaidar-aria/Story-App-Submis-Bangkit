@@ -19,4 +19,5 @@
     <string name="gallery">galeri</string>
     <string name="upload">unggah</string>
     <string name="empty_image_warning">Silakan masukkan berkas gambar terlebih dahulu.</string>
+    <string name="dark_mode">Dark Mode</string>
 </resources>
