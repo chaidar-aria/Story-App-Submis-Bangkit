@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.chaidar.storyappsubmis.backend.data.UserPreference
 import com.chaidar.storyappsubmis.frontend.login.LoginViewModel
 import com.chaidar.storyappsubmis.frontend.main.MainViewModel
+import com.chaidar.storyappsubmis.frontend.maps.MapsViewModel
 import com.chaidar.storyappsubmis.frontend.settings.SettingsViewModel
 
 
@@ -22,6 +23,10 @@ class ViewModelFactory(private val pref: UserPreference) : ViewModelProvider.New
 
             modelClass.isAssignableFrom(SettingsViewModel::class.java) -> {
                 SettingsViewModel(pref) as T
+            }
+
+            modelClass.isAssignableFrom(MapsViewModel::class.java) -> {
+                MapsViewModel(pref) as T
             }
 
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)

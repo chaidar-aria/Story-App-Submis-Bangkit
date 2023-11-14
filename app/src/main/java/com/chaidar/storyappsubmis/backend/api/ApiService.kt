@@ -37,8 +37,8 @@ interface ApiService {
 
     @GET("stories")
     fun getStories(
-        @Query("page") page: Int? = null,
-        @Query("size") size: Int? = null,
+        @Query("page") page: Int? = 1,
+        @Query("size") size: Int? = 20,
         @Query("location") location: Int = 0
     ): Call<AllStoryResponse>
 
@@ -54,4 +54,11 @@ interface ApiService {
         @Part file: MultipartBody.Part,
         @Part("description") description: RequestBody,
     ): Call<AddStoryResponse>
+
+    @GET("stories")
+    fun getStoriesWithLocation(
+        @Query("page") page: Int? = null,
+        @Query("size") size: Int? = null,
+        @Query("location") location : Int = 1,
+    ): Call<AllStoryResponse>
 }

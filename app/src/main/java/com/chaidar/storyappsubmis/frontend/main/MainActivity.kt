@@ -12,6 +12,7 @@ import com.chaidar.storyappsubmis.backend.data.dataStore
 import com.chaidar.storyappsubmis.backend.response.ListStoryItem
 import com.chaidar.storyappsubmis.databinding.ActivityMainBinding
 import com.chaidar.storyappsubmis.frontend.ViewModelFactory
+import com.chaidar.storyappsubmis.frontend.maps.MapsActivity
 import com.chaidar.storyappsubmis.frontend.profile.ProfileActivity
 import com.chaidar.storyappsubmis.frontend.settings.SettingsActivity
 import com.chaidar.storyappsubmis.frontend.upload.UploadActivity
@@ -60,7 +61,6 @@ class MainActivity : AppCompatActivity() {
         }
         mainViewModel.getSession().observe(this) { user ->
             if (!user.isLogin) {
-//                startActivity(Intent(this, SplashScreenActivity::class.java))
                 finish()
             } else {
                 UserPreference.setToken(user.tokenAuth)
