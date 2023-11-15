@@ -1,5 +1,7 @@
 package com.chaidar.storyappsubmis.backend.response
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
 data class AllStoryResponse(
@@ -14,6 +16,7 @@ data class AllStoryResponse(
 	val message: String? = null
 )
 
+@Entity(tableName = "listStory")
 data class ListStoryItem(
 
 	@field:SerializedName("photoUrl")
@@ -31,8 +34,9 @@ data class ListStoryItem(
 	@field:SerializedName("lon")
 	val lon: Double? = null,
 
+	@PrimaryKey
 	@field:SerializedName("id")
-	val id: String? = null,
+	val id: String,
 
 	@field:SerializedName("lat")
 	val lat: Double? = null

@@ -1,6 +1,7 @@
 import com.chaidar.storyappsubmis.backend.response.AddStoryResponse
 import com.chaidar.storyappsubmis.backend.response.AllStoryResponse
 import com.chaidar.storyappsubmis.backend.response.GetStoryResponse
+import com.chaidar.storyappsubmis.backend.response.ListStoryItem
 import com.chaidar.storyappsubmis.backend.response.LoginResponse
 import com.chaidar.storyappsubmis.backend.response.RegisterResponse
 import okhttp3.MultipartBody
@@ -36,11 +37,11 @@ interface ApiService {
     ): Call<LoginResponse>
 
     @GET("stories")
-    fun getStories(
+    suspend fun getStories(
         @Query("page") page: Int? = 1,
         @Query("size") size: Int? = 20,
         @Query("location") location: Int = 0
-    ): Call<AllStoryResponse>
+    ): AllStoryResponse
 
 
     @GET("stories/{userId}")

@@ -6,8 +6,8 @@ import android.widget.CompoundButton
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProvider
 import com.chaidar.storyappsubmis.R
-import com.chaidar.storyappsubmis.backend.data.UserPreference
-import com.chaidar.storyappsubmis.backend.data.dataStore
+import com.chaidar.storyappsubmis.backend.data.preferences.UserPreference
+import com.chaidar.storyappsubmis.backend.data.preferences.dataStore
 import com.chaidar.storyappsubmis.databinding.ActivitySettingsBinding
 import com.chaidar.storyappsubmis.frontend.ViewModelFactory
 import com.google.android.material.switchmaterial.SwitchMaterial

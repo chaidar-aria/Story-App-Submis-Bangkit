@@ -1,4 +1,4 @@
-package com.chaidar.storyappsubmis.backend.data
+package com.chaidar.storyappsubmis.backend.data.model
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

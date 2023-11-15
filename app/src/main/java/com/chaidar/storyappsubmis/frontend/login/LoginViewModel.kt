@@ -6,10 +6,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.chaidar.storyappsubmis.backend.api.ApiConfig
-import com.chaidar.storyappsubmis.backend.data.UserModel
-import com.chaidar.storyappsubmis.backend.data.UserPreference
+import com.chaidar.storyappsubmis.backend.data.model.UserModel
+import com.chaidar.storyappsubmis.backend.data.preferences.UserPreference
 import com.chaidar.storyappsubmis.backend.response.LoginResponse
-import com.chaidar.storyappsubmis.backend.response.LoginResult
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback

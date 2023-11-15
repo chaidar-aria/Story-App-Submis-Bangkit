@@ -1,16 +1,13 @@
 package com.chaidar.storyappsubmis.frontend.maps
 
-import android.content.ContentValues.TAG
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.chaidar.storyappsubmis.backend.api.ApiConfig
-import com.chaidar.storyappsubmis.backend.data.UserPreference
+import com.chaidar.storyappsubmis.backend.data.preferences.UserPreference
 import com.chaidar.storyappsubmis.backend.response.AllStoryResponse
-import com.chaidar.storyappsubmis.backend.response.GetStoryResponse
 import com.chaidar.storyappsubmis.backend.response.ListStoryItem
-import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

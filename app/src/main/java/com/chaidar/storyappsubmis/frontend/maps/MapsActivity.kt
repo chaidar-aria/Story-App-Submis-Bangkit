@@ -9,15 +9,9 @@ import android.view.MenuItem
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.chaidar.storyappsubmis.R
-import com.chaidar.storyappsubmis.backend.api.ApiConfig
-import com.chaidar.storyappsubmis.backend.data.MapsModel
-import com.chaidar.storyappsubmis.backend.data.UserPreference
-import com.chaidar.storyappsubmis.backend.data.dataStore
-import com.chaidar.storyappsubmis.backend.response.GetStoryResponse
+import com.chaidar.storyappsubmis.backend.data.preferences.UserPreference
+import com.chaidar.storyappsubmis.backend.data.preferences.dataStore
 import com.chaidar.storyappsubmis.backend.response.ListStoryItem
 
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -28,11 +22,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.chaidar.storyappsubmis.databinding.ActivityMapsBinding
 import com.chaidar.storyappsubmis.frontend.ViewModelFactory
-import com.chaidar.storyappsubmis.frontend.main.MainViewModel
 import com.google.android.gms.maps.model.LatLngBounds
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 

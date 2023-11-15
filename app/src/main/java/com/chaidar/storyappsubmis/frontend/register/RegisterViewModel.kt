@@ -15,6 +15,7 @@ import retrofit2.Response
 
 class RegisterViewModel : ViewModel() {
 
+
     private val _registrationResult = MutableLiveData<Boolean>()
 
     private val _errorMessage = MutableLiveData<String>()

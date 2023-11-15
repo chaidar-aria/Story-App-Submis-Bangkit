@@ -6,17 +6,18 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import com.bumptech.glide.Glide
-import com.chaidar.storyappsubmis.R
 import com.chaidar.storyappsubmis.backend.api.ApiConfig
+import com.chaidar.storyappsubmis.backend.data.preferences.UserPreference
 import com.chaidar.storyappsubmis.backend.response.GetStoryResponse
-import com.chaidar.storyappsubmis.backend.response.Story
 import com.chaidar.storyappsubmis.databinding.ActivityDetailBinding
+import kotlinx.coroutines.flow.first
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class DetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailBinding
+    private lateinit var pref: UserPreference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

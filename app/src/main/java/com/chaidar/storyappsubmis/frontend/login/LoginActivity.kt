@@ -8,8 +8,8 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
-import com.chaidar.storyappsubmis.backend.data.UserPreference
-import com.chaidar.storyappsubmis.backend.data.dataStore
+import com.chaidar.storyappsubmis.backend.data.preferences.UserPreference
+import com.chaidar.storyappsubmis.backend.data.preferences.dataStore
 import com.chaidar.storyappsubmis.databinding.ActivityLoginBinding
 import com.chaidar.storyappsubmis.frontend.ViewModelFactory
 import com.chaidar.storyappsubmis.frontend.register.RegisterActivity

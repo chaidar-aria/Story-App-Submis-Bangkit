@@ -19,14 +19,12 @@ import com.chaidar.storyappsubmis.backend.utils.getImageUri
 import com.chaidar.storyappsubmis.backend.utils.reduceFileImage
 import com.chaidar.storyappsubmis.backend.utils.uriToFile
 import com.chaidar.storyappsubmis.frontend.main.MainActivity
-import kotlinx.coroutines.launch
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import retrofit2.Call
 import retrofit2.Callback
-import retrofit2.HttpException
 import retrofit2.Response
 
 class UploadActivity : AppCompatActivity() {

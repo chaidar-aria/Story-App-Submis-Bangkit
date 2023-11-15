@@ -3,10 +3,9 @@ package com.chaidar.storyappsubmis.frontend.welcome
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
 import androidx.activity.viewModels
-import com.chaidar.storyappsubmis.backend.data.UserPreference
-import com.chaidar.storyappsubmis.backend.data.dataStore
+import com.chaidar.storyappsubmis.backend.data.preferences.UserPreference
+import com.chaidar.storyappsubmis.backend.data.preferences.dataStore
 import com.chaidar.storyappsubmis.databinding.ActivityWelcomeBinding
 import com.chaidar.storyappsubmis.frontend.ViewModelFactory
 import com.chaidar.storyappsubmis.frontend.login.LoginActivity
@@ -15,7 +14,7 @@ import com.chaidar.storyappsubmis.frontend.main.MainViewModel
 
 class SplashScreenActivity : AppCompatActivity() {
 
-    private val welcomeViewModel by viewModels<MainViewModel> {
+    private val welcomeViewModel by viewModels<WelcomeViewModel> {
         ViewModelFactory(UserPreference.getInstance(dataStore))
     }
 
@@ -24,8 +23,6 @@ class SplashScreenActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityWelcomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-//        val SPLASH_TIME_OUT: Long = 3000
 
         welcomeViewModel.getSession().observe(this) { user ->
             if (user.isLogin) {
@@ -37,11 +34,5 @@ class SplashScreenActivity : AppCompatActivity() {
                 startActivity(Intent(this, LoginActivity::class.java))
             }
         }
-//        // Hentikan splash screen setelah SPLASH_TIME_OUT
-//        Handler().postDelayed({
-//            val intent = Intent(this, MainActivity::class.java)
-//            startActivity(intent)
-//            finish()
-//        }, SPLASH_TIME_OUT)
     }
 }

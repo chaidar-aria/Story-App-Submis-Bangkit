@@ -1,5 +1,6 @@
 package com.chaidar.storyappsubmis.backend.response
 
+import androidx.room.Entity
 import com.google.gson.annotations.SerializedName
 
 data class GetStoryResponse(

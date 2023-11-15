@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.paging.PagingDataAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.chaidar.storyappsubmis.R
@@ -13,18 +15,37 @@ import com.chaidar.storyappsubmis.backend.response.ListStoryItem
 import com.chaidar.storyappsubmis.databinding.ItemRowBinding
 import com.chaidar.storyappsubmis.frontend.detail.DetailActivity
 
-class MainAdapter(private val listItem: List<ListStoryItem>) :
-    RecyclerView.Adapter<MainAdapter.ViewHolder>() {
+class MainAdapter: PagingDataAdapter<ListStoryItem, MainAdapter.ViewHolder>(DIFF_CALLBACK) {
+    companion object {
+        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<ListStoryItem>() {
+            override fun areItemsTheSame(oldItem: ListStoryItem, newItem: ListStoryItem): Boolean {
+                return oldItem.id == newItem.id
+            }
+
+            override fun areContentsTheSame(oldItem: ListStoryItem, newItem: ListStoryItem): Boolean {
+                return oldItem == newItem
+            }
+
+        }
+    }
+
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val binding = ItemRowBinding.bind(itemView)
-//        private val imageViewCard: ImageView = binding.imageViewCard
-//        private val titleTextViewCard: TextView = binding.titleTextViewCard
-//        private val contentTextViewCard: TextView = binding.contentTextViewCard
         fun bindItem(item: ListStoryItem) {
             with(binding) {
                 Glide.with(itemView).load(item.photoUrl).into(imageViewCard)
                 titleTextViewCard.text = item.name
                 contentTextViewCard.text = item.description
+
+                itemView.setOnClickListener{
+                    val intent = Intent(itemView.context, DetailActivity::class.java)
+                    intent.putExtra("title", item.name)
+                    intent.putExtra("content", item.description)
+                    intent.putExtra("photoUrl", item.photoUrl)
+                    intent.putExtra("userId", item.id)
+                    itemView.context.startActivity(intent)
+
+                }
             }
         }
     }
@@ -35,21 +56,11 @@ class MainAdapter(private val listItem: List<ListStoryItem>) :
         )
     }
 
-    override fun getItemCount(): Int = listItem.size
+//    override fun getItemCount(): Int = listItem.size
 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bindItem(listItem[position])
-
-
-        val intent = Intent(holder.itemView.context, DetailActivity::class.java)
-        intent.putExtra("title", listItem[position].name)
-        intent.putExtra("content", listItem[position].description)
-        intent.putExtra("photoUrl", listItem[position].photoUrl)
-        intent.putExtra("userId", listItem[position].id)
-        holder.itemView.setOnClickListener {
-            holder.itemView.context.startActivity(intent)
-        }
+        holder.bindItem(getItem(position) as ListStoryItem)
 
     }
 }

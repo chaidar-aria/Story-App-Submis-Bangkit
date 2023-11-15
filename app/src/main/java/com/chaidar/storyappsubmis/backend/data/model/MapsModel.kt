@@ -1,4 +1,4 @@
-package com.chaidar.storyappsubmis.backend.data
+package com.chaidar.storyappsubmis.backend.data.model
 
 data class MapsModel(
     val name: String,
